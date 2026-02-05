@@ -28,7 +28,18 @@ module.exports = {
       },
     },
     `gatsby-transformer-remark`,
-    `gatsby-plugin-manifest`,
+    {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        name: `Aesop's Tech Blog`,
+        short_name: `Tech Blog`,
+        start_url: `/`,
+        background_color: `#ffffff`,
+        theme_color: `#663399`,
+        display: `minimal-ui`,
+        icon: `src/images/icon.png`,
+      },
+    },
     `gatsby-plugin-react-helmet`,
   ],
 }

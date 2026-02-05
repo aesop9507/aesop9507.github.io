@@ -96,9 +96,3 @@ export const query = graphql`
     }
   }
 `
-
-export const Head = ({ data }) => (
-  <Helmet>
-    <title>{data.markdownRemark.frontmatter.title}</title>
-  </Helmet>
-)
