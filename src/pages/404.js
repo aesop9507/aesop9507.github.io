@@ -1,13 +1,14 @@
 import * as React from "react"
-import { Link, Head } from "gatsby"
+import { Link } from "gatsby"
+import { Helmet } from "react-helmet"
 
 const NotFoundPage = () => {
   return (
     <div className="min-h-screen bg-background text-foreground flex items-center justify-center px-4">
-      <Head>
+      <Helmet>
         <title>404 - Not Found | Aesop's Tech Blog</title>
         <meta name="description" content="Page not found" />
-      </Head>
+      </Helmet>
 
       <div className="text-center max-w-xl mx-auto">
         <div className="font-display text-6xl md:text-7xl font-semibold editorial-heading mb-6 text-foreground">
