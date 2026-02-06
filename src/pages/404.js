@@ -1,49 +1,46 @@
 import * as React from "react"
-import { Link } from "gatsby"
-
-const pageStyles = {
-  color: "#232129",
-  padding: "96px",
-  fontFamily: "-apple-system, Roboto, sans-serif, serif",
-}
-const headingStyles = {
-  marginTop: 0,
-  marginBottom: 64,
-  maxWidth: 320,
-}
-
-const paragraphStyles = {
-  marginBottom: 48,
-}
-const codeStyles = {
-  color: "#8A6534",
-  padding: 4,
-  backgroundColor: "#FFF4DB",
-  fontSize: "1.25rem",
-  borderRadius: 4,
-}
+import { Link, Head } from "gatsby"
 
 const NotFoundPage = () => {
   return (
-    <main style={pageStyles}>
-      <h1 style={headingStyles}>Page not found</h1>
-      <p style={paragraphStyles}>
-        Sorry 😔, we couldn’t find what you were looking for.
-        <br />
-        {process.env.NODE_ENV === "development" ? (
-          <>
-            <br />
-            Try creating a page in <code style={codeStyles}>src/pages/</code>.
-            <br />
-          </>
-        ) : null}
-        <br />
-        <Link to="/">Go home</Link>.
-      </p>
-    </main>
+    <div className="min-h-screen bg-background text-foreground scanlines flex items-center justify-center px-4">
+      <Head>
+        <title>404 - Not Found | Aesop's Tech Blog</title>
+        <meta name="description" content="Page not found" />
+      </Head>
+
+      <div className="text-center max-w-2xl mx-auto">
+        <div className="font-display text-8xl md:text-9xl font-bold cyber-heading mb-4 float">
+          404
+        </div>
+        <div className="font-display text-xs text-primary mb-8 tracking-[0.3em] uppercase">
+          // Error: Page not found
+        </div>
+
+        <p className="text-lg md:text-xl text-muted-foreground mb-12 leading-relaxed">
+          The digital resource you're looking for has been lost in the void.
+          Redirecting to home base...
+        </p>
+
+        <Link
+          to="/"
+          className="neon-border inline-flex items-center gap-3 bg-card border border-border px-8 py-4 font-display text-sm hover:text-primary transition-colors hover:transform hover:scale-105 transition-all duration-300"
+        >
+          <span>←</span>
+          <span className="tracking-wider">RETURN_TO_INDEX</span>
+        </Link>
+
+        <div className="mt-16 font-display text-xs text-muted-foreground">
+          <div className="flex justify-center gap-2 mb-4">
+            <span className="text-primary">●</span>
+            <span className="text-secondary">●</span>
+            <span className="text-accent">●</span>
+          </div>
+          <div>[ SYSTEM_ERROR_404 ]</div>
+        </div>
+      </div>
+    </div>
   )
 }
 
 export default NotFoundPage
-
-export const Head = () => <title>Not found</title>
