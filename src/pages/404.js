@@ -1,13 +1,14 @@
 import * as React from "react"
-import { Link, Head } from "gatsby"
+import { Link } from "gatsby"
+import { Helmet } from "react-helmet"
 
 const NotFoundPage = () => {
   return (
     <div className="min-h-screen bg-background text-foreground scanlines flex items-center justify-center px-4">
-      <Head>
+      <Helmet>
         <title>404 - Not Found | Aesop's Tech Blog</title>
         <meta name="description" content="Page not found" />
-      </Head>
+      </Helmet>
 
       <div className="text-center max-w-2xl mx-auto">
         <div className="font-display text-8xl md:text-9xl font-bold cyber-heading mb-4 float">
@@ -18,7 +19,7 @@ const NotFoundPage = () => {
         </div>
 
         <p className="text-lg md:text-xl text-muted-foreground mb-12 leading-relaxed">
-          The digital resource you're looking for has been lost in the void.
+          The digital resource you're looking for has been lost in void.
           Redirecting to home base...
         </p>
 
