@@ -7,8 +7,8 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        display: ['"Space Mono"', 'monospace'],
-        body: ['"Outfit"', 'sans-serif'],
+        display: ['"Playfair Display"', 'Georgia', 'serif'],
+        body: ['"Instrument Serif"', 'Georgia', 'Times New Roman', 'serif'],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -51,22 +51,12 @@ module.exports = {
         sm: "calc(var(--radius) - 4px)",
       },
       animation: {
-        'glow': 'glow 3s linear infinite',
-        'float': 'float 6s ease-in-out infinite',
-        'fade-in': 'fadeIn 0.6s ease-out',
+        'subtle-lift': 'subtleLift 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
       },
       keyframes: {
-        glow: {
-          '0%, 100%': { backgroundPosition: '0 0' },
-          '50%': { backgroundPosition: '100% 0' },
-        },
-        float: {
-          '0%, 100%': { transform: 'translateY(0px)' },
-          '50%': { transform: 'translateY(-10px)' },
-        },
-        fadeIn: {
-          '0%': { opacity: '0', transform: 'translateY(20px)' },
-          '100%': { opacity: '1', transform: 'translateY(0)' },
+        subtleLift: {
+          '0%': { transform: 'translateY(0px)' },
+          '100%': { transform: 'translateY(-2px)' },
         },
       },
     },
