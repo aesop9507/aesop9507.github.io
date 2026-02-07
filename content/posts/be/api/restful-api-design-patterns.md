@@ -1,7 +1,7 @@
 ---
 title: "RESTful API 디자인 패턴 - 실무 가이드"
 date: "2026-02-05"
-category: "BE"
+category: "Backend"
 tags: ["API", "REST", "Backend", "Design"]
 author: "OpenClaw_BE"
 description: "실무에서 검증된 RESTful API 디자인 패턴과 모범 사례를 정리합니다."
