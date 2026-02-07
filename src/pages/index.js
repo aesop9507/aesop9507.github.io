@@ -2,7 +2,6 @@ import * as React from "react"
 import { graphql } from "gatsby"
 import { Helmet } from "react-helmet"
 import Header from "../components/Header"
-import CategoryFilter from "../components/CategoryFilter"
 import SearchBar from "../components/SearchBar"
 import PopularPosts from "../components/PopularPosts"
 import FeaturedPost from "../components/FeaturedPost"
@@ -11,14 +10,13 @@ import ArticleSeries from "../components/ArticleSeries"
 
 const IndexPage = ({ data }) => {
   const [isDarkMode, setIsDarkMode] = React.useState(false)
-  const [activeCategory, setActiveCategory] = React.useState('all')
   const [searchTerm, setSearchTerm] = React.useState('')
+  const [featuredIndex, setFeaturedIndex] = React.useState(0)
 
-  // Default to dark mode like toss.tech
+  // Default to dark mode
   React.useEffect(() => {
     const saved = localStorage.getItem('darkMode')
     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
-    // Default to dark mode if not set
     const shouldDark = saved === null ? prefersDark : saved === 'true'
     setIsDarkMode(shouldDark)
   }, [])
@@ -36,38 +34,31 @@ const IndexPage = ({ data }) => {
     document.documentElement.classList.toggle('dark', isDarkMode)
   }, [isDarkMode])
 
-  // Count posts by category
+  // Get all posts
   const allPosts = data.allMarkdownRemark.edges
-  const categoryCounts = {
-    all: allPosts.length,
-    frontend: allPosts.filter(p => p.node.frontmatter.category === 'Frontend').length,
-    backend: allPosts.filter(p => p.node.frontmatter.category === 'Backend').length,
-    architecture: allPosts.filter(p => p.node.frontmatter.category === 'Architecture').length,
-    security: allPosts.filter(p => p.node.frontmatter.category === 'Security').length,
-    devops: allPosts.filter(p => p.node.frontmatter.category === 'DevOps').length,
-  }
 
-  // Filter posts by category and search term
+  // Filter posts by search term
   const filteredPosts = allPosts.filter(({ node }) => {
-    const matchesCategory = activeCategory === 'all' || node.frontmatter.category === activeCategory
     const matchesSearch = searchTerm === '' ||
       node.frontmatter.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
       node.frontmatter.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
       node.frontmatter.tags?.some(tag => tag.toLowerCase().includes(searchTerm.toLowerCase()))
 
-    return matchesCategory && matchesSearch
+    return matchesSearch
   })
 
-  // Get featured post (latest)
-  const featuredPost = allPosts[0]?.node
+  // Featured post navigation
+  const featuredPost = allPosts[featuredIndex]?.node
+  const onPrev = () => setFeaturedIndex(Math.max(0, featuredIndex - 1))
+  const onNext = () => setFeaturedIndex(Math.min(allPosts.length - 1, featuredIndex + 1))
 
-  // Get popular posts (top 4)
-  const popularPosts = allPosts.slice(1, 5)
-
-  // Don't show featured post in regular list if showing all
-  const listPosts = activeCategory === 'all' && searchTerm === ''
+  // Don't show featured post in regular list when no search
+  const listPosts = searchTerm === ''
     ? allPosts.slice(1)
     : filteredPosts
+
+  // Get popular posts (top 4, exclude featured)
+  const popularPosts = searchTerm === '' ? allPosts.slice(1, 5) : []
 
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -78,43 +69,52 @@ const IndexPage = ({ data }) => {
 
       <Header isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} />
 
-      {/* Search Bar */}
-      <SearchBar searchTerm={searchTerm} onSearch={setSearchTerm} />
+      {/* Search Bar - only show when not searching */}
+      {searchTerm === '' && (
+        <div className="container mx-auto px-4 py-4">
+          <button className="p-2 rounded-lg hover:bg-muted transition-colors" aria-label="검색">
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
+          </button>
+        </div>
+      )}
 
-      {/* Category Filter */}
-      <CategoryFilter
-        activeCategory={activeCategory}
-        onCategoryChange={setActiveCategory}
-        counts={categoryCounts}
-      />
-
-      {/* Featured Post - only show when all posts and no search */}
-      {activeCategory === 'all' && searchTerm === '' && featuredPost && (
-        <FeaturedPost post={featuredPost} />
+      {/* Featured Post - only show when no search */}
+      {searchTerm === '' && featuredPost && (
+        <FeaturedPost
+          post={featuredPost}
+          onPrev={onPrev}
+          onNext={onNext}
+          hasPrev={featuredIndex > 0}
+          hasNext={featuredIndex < allPosts.length - 1}
+        />
       )}
 
       {/* Main Content - Article List */}
       <ArticleList posts={listPosts} />
 
-      {/* Popular Posts - only show when all and no search */}
-      {activeCategory === 'all' && searchTerm === '' && (
+      {/* Popular Posts - only show when no search */}
+      {searchTerm === '' && popularPosts.length > 0 && (
         <PopularPosts posts={popularPosts} />
       )}
 
-      {/* Article Series - only show when all and no search */}
-      {activeCategory === 'all' && searchTerm === '' && (
-        <ArticleSeries />
-      )}
+      {/* Article Series - only show when no search */}
+      {searchTerm === '' && <ArticleSeries />}
 
       {/* Footer */}
       <footer className="border-t border-border mt-20">
-        <div className="container mx-auto px-4 py-12 text-center">
-          <div className="font-display text-sm text-muted-foreground mb-4">
-            Built with Gatsby & Tailwind CSS
+        <div className="container mx-auto px-4 py-12">
+          <div className="max-w-4xl mx-auto">
+            <div className="flex flex-col md:flex-row justify-between items-center gap-6">
+              <div className="font-display text-sm text-muted-foreground">
+                Built with Gatsby & Tailwind CSS
+              </div>
+              <p className="font-body text-xs text-muted-foreground">
+                © {new Date().getFullYear()} Aesop's Tech Blog
+              </p>
+            </div>
           </div>
-          <p className="font-body text-xs text-muted-foreground">
-            © {new Date().getFullYear()} Aesop's Tech Blog
-          </p>
         </div>
       </footer>
     </div>

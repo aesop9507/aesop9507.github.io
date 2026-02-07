@@ -2,60 +2,63 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Custom fonts */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap');
+/* Pretendard Font - Korean */
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css');
+
+/* Display font for English */
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap');
 
 @layer base {
   :root {
-    /* Light theme - clean, modern */
+    /* Unique color palette - NOT Toss colors */
     --background: 0 0% 100%;
-    --foreground: 0 0% 10%;
+    --foreground: 0 0% 8%;
 
     --card: 0 0% 100%;
-    --card-foreground: 0 0% 10%;
+    --card-foreground: 0 0% 8%;
 
-    --primary: 220 90% 56%; /* Vivid blue - toss-like */
+    --primary: 155 70% 35%; /* Emerald Green - fresh, techy */
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 217 91% 60%;
+    --secondary: 242 80% 55%; /* Indigo - depth */
     --secondary-foreground: 0 0% 100%;
 
-    --muted: 0 0% 96%;
+    --muted: 220 15% 96%;
     --muted-foreground: 0 0% 45%;
 
-    --accent: 26 95% 53%; /* Toss orange */
+    --accent: 38 90% 55%; /* Amber - warm accent */
     --accent-foreground: 0 0% 100%;
 
-    --border: 0 0% 90%;
-    --input: 0 0% 90%;
-    --ring: 220 90% 56%;
+    --border: 220 10% 92%;
+    --input: 220 10% 92%;
+    --ring: 155 70% 35%;
 
     --radius: 0.5rem;
   }
 
   .dark {
-    /* Dark theme - like toss.tech */
-    --background: 0 0% 8%;
+    /* Dark theme - refined */
+    --background: 0 0% 6%;
     --foreground: 0 0% 95%;
 
-    --card: 0 0% 10%;
+    --card: 0 0% 8%;
     --card-foreground: 0 0% 95%;
 
-    --primary: 220 90% 60%;
+    --primary: 155 70% 45%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 217 91% 65%;
+    --secondary: 242 80% 65%;
     --secondary-foreground: 0 0% 100%;
 
-    --muted: 0 0% 15%;
+    --muted: 220 15% 12%;
     --muted-foreground: 0 0% 60%;
 
-    --accent: 26 95% 58%;
+    --accent: 38 90% 58%;
     --accent-foreground: 0 0% 100%;
 
-    --border: 0 0% 20%;
-    --input: 0 0% 20%;
-    --ring: 220 90% 60%;
+    --border: 220 15% 18%;
+    --input: 220 15% 18%;
+    --ring: 155 70% 45%;
   }
 }
 
@@ -70,7 +73,7 @@
 
   body {
     @apply bg-background text-foreground;
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
     font-feature-settings: "rlig" 1, "calt" 1;
     font-size: 16px;
     line-height: 1.6;
@@ -78,7 +81,7 @@
     color: hsl(var(--foreground));
   }
 
-  /* Custom scrollbar */
+  /* Custom scrollbar - refined */
   ::-webkit-scrollbar {
     width: 8px;
     height: 8px;
@@ -89,7 +92,7 @@
   }
 
   ::-webkit-scrollbar-thumb {
-    background: hsl(var(--muted-foreground)/30);
+    background: hsl(var(--muted-foreground)/20%);
     border-radius: 4px;
   }
 
@@ -97,21 +100,21 @@
     background: hsl(var(--primary)/50%);
   }
 
-  /* Selection */
+  /* Selection - branded */
   ::selection {
-    background: hsl(var(--primary)/20%);
+    background: hsl(var(--primary)/15%);
     color: hsl(var(--foreground));
   }
 
   .dark ::selection {
-    background: hsl(var(--primary)/30%);
+    background: hsl(var(--primary)/25%);
   }
 
   /* Links */
   a {
-    @apply text-primary hover:text-accent;
+    @apply text-primary hover:text-secondary;
     text-decoration: none;
-    transition: color 0.2s ease;
+    transition: all 0.2s ease;
   }
 
   a:hover {
@@ -122,34 +125,43 @@
 /* Typography */
 @layer components {
   .font-display {
-    font-family: 'Playfair Display', Georgia, serif;
+    font-family: 'Space Grotesk', 'Pretendard', -apple-system, sans-serif;
+    font-weight: 600;
   }
 
   .font-body {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
   }
 
   /* Editorial heading */
   .editorial-heading {
     @apply font-display;
-    font-weight: 600;
     letter-spacing: -0.02em;
     line-height: 1.2;
   }
 
   /* Hover lift */
   .hover-lift {
-    transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1),
-                box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+                box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .hover-lift:hover {
     transform: translateY(-4px);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
   }
 
   .dark .hover-lift:hover {
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+  }
+
+  /* Subtle hover */
+  .hover-subtle {
+    transition: all 0.2s ease;
+  }
+
+  .hover-subtle:hover {
+    background-color: hsl(var(--muted));
   }
 }
 
@@ -179,7 +191,7 @@
   .prose h2 {
     @apply text-2xl md:text-3xl;
     padding-bottom: 0.5rem;
-    border-bottom: 1px solid hsl(var(--border));
+    border-bottom: 2px solid hsl(var(--border));
   }
 
   .prose h3 {
@@ -189,7 +201,7 @@
 
   .prose h4 {
     @apply text-lg md:text-xl;
-    color: hsl(var(--accent));
+    color: hsl(var(--secondary));
   }
 
   .prose p {
@@ -236,11 +248,11 @@
   }
 
   .prose a:hover {
-    @apply text-accent;
+    @apply text-secondary;
   }
 
   .prose blockquote {
-    @apply border-l-2 border-l-primary pl-6 italic my-8;
+    @apply border-l-4 border-l-primary pl-6 italic my-8;
     font-style: italic;
     font-size: 1.1em;
     color: hsl(var(--muted-foreground));
@@ -297,14 +309,60 @@
   overflow: hidden;
 }
 
-/* Gradient text */
-.gradient-text {
-  @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent;
-}
-
 /* Glass effect */
 .glass {
   background: hsl(var(--background) / 0.8);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
+}
+
+/* Category badge colors */
+.category-badge-Frontend {
+  background-color: hsl(155 70% 95%);
+  color: hsl(155 70% 35%);
+}
+
+.category-badge-Backend {
+  background-color: hsl(242 80% 95%);
+  color: hsl(242 80% 55%);
+}
+
+.category-badge-Architecture {
+  background-color: hsl(280 70% 95%);
+  color: hsl(280 70% 45%);
+}
+
+.category-badge-Security {
+  background-color: hsl(0 80% 95%);
+  color: hsl(0 80% 50%);
+}
+
+.category-badge-DevOps {
+  background-color: hsl(200 70% 95%);
+  color: hsl(200 70% 45%);
+}
+
+.dark .category-badge-Frontend {
+  background-color: hsl(155 70% 20%);
+  color: hsl(155 70% 75%);
+}
+
+.dark .category-badge-Backend {
+  background-color: hsl(242 80% 20%);
+  color: hsl(242 80% 70%);
+}
+
+.dark .category-badge-Architecture {
+  background-color: hsl(280 70% 20%);
+  color: hsl(280 70% 70%);
+}
+
+.dark .category-badge-Security {
+  background-color: hsl(0 80% 20%);
+  color: hsl(0 80% 70%);
+}
+
+.dark .category-badge-DevOps {
+  background-color: hsl(200 70% 20%);
+  color: hsl(200 70% 70%);
 }

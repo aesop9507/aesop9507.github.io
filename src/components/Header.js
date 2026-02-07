@@ -19,11 +19,37 @@ const Header = ({ isDarkMode, toggleDarkMode }) => {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between py-4">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-3">
-            <h1 className="font-display text-2xl font-bold text-foreground">
-              Aesop's Blog
-            </h1>
+          <Link to="/" className="font-display text-2xl font-bold text-foreground">
+            Aesop's Blog
           </Link>
+
+          {/* Center - Categories */}
+          <nav className="hidden md:flex items-center gap-1">
+            <Link
+              to="/"
+              className="px-4 py-2 text-sm font-medium text-foreground hover:bg-muted rounded-lg transition-colors"
+            >
+              전체
+            </Link>
+            <Link
+              to="/"
+              className="px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted rounded-lg transition-colors"
+            >
+              Frontend
+            </Link>
+            <Link
+              to="/"
+              className="px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted rounded-lg transition-colors"
+            >
+              Backend
+            </Link>
+            <Link
+              to="/"
+              className="px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted rounded-lg transition-colors"
+            >
+              DevOps
+            </Link>
+          </nav>
 
           {/* Right side */}
           <div className="flex items-center gap-2">
@@ -45,8 +71,8 @@ const Header = ({ isDarkMode, toggleDarkMode }) => {
           </div>
         </div>
 
-        {/* Subtitle */}
-        <div className="pb-3 text-sm text-muted-foreground">
+        {/* Subtitle - only on desktop */}
+        <div className="hidden md:block pb-3 text-sm text-muted-foreground">
           Frontend · Backend · Architecture
         </div>
       </div>
