@@ -8,7 +8,7 @@ module.exports = {
     extend: {
       fontFamily: {
         display: ['"Playfair Display"', 'Georgia', 'serif'],
-        body: ['"Instrument Serif"', 'Georgia', 'Times New Roman', 'serif'],
+        body: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
       },
       colors: {
         border: "hsl(var(--border))",

@@ -5,17 +5,22 @@ import Header from "../components/Header"
 import CategoryFilter from "../components/CategoryFilter"
 import SearchBar from "../components/SearchBar"
 import PopularPosts from "../components/PopularPosts"
+import FeaturedPost from "../components/FeaturedPost"
+import ArticleList from "../components/ArticleList"
+import ArticleSeries from "../components/ArticleSeries"
 
 const IndexPage = ({ data }) => {
   const [isDarkMode, setIsDarkMode] = React.useState(false)
   const [activeCategory, setActiveCategory] = React.useState('all')
   const [searchTerm, setSearchTerm] = React.useState('')
 
-  // Load dark mode preference
+  // Default to dark mode like toss.tech
   React.useEffect(() => {
     const saved = localStorage.getItem('darkMode')
     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
-    setIsDarkMode(saved === 'true' || (!saved && prefersDark))
+    // Default to dark mode if not set
+    const shouldDark = saved === null ? prefersDark : saved === 'true'
+    setIsDarkMode(shouldDark)
   }, [])
 
   // Toggle dark mode
@@ -53,8 +58,16 @@ const IndexPage = ({ data }) => {
     return matchesCategory && matchesSearch
   })
 
-  // Get popular posts (top 4 by some logic - for now just take first 4)
-  const popularPosts = allPosts.slice(0, 4)
+  // Get featured post (latest)
+  const featuredPost = allPosts[0]?.node
+
+  // Get popular posts (top 4)
+  const popularPosts = allPosts.slice(1, 5)
+
+  // Don't show featured post in regular list if showing all
+  const listPosts = activeCategory === 'all' && searchTerm === ''
+    ? allPosts.slice(1)
+    : filteredPosts
 
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -64,21 +77,6 @@ const IndexPage = ({ data }) => {
       </Helmet>
 
       <Header isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} />
-
-      {/* Hero Section */}
-      <section className="container mx-auto px-4 py-12 md:py-20">
-        <div className="text-center max-w-3xl mx-auto">
-          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-semibold editorial-heading mb-6 text-foreground">
-            Technical Writing
-          </h2>
-          <p className="font-body text-lg md:text-xl text-muted-foreground leading-relaxed mb-8">
-            Exploring modern web technologies, architecture patterns, and the art of building digital experiences.
-          </p>
-          <div className="font-body text-sm text-muted-foreground">
-            {allPosts.length} articles published
-          </div>
-        </div>
-      </section>
 
       {/* Search Bar */}
       <SearchBar searchTerm={searchTerm} onSearch={setSearchTerm} />
@@ -90,67 +88,23 @@ const IndexPage = ({ data }) => {
         counts={categoryCounts}
       />
 
-      {/* Divider */}
-      <div className="container mx-auto px-4">
-        <div className="decorative-divider"></div>
-      </div>
+      {/* Featured Post - only show when all posts and no search */}
+      {activeCategory === 'all' && searchTerm === '' && featuredPost && (
+        <FeaturedPost post={featuredPost} />
+      )}
 
-      {/* Popular Posts */}
+      {/* Main Content - Article List */}
+      <ArticleList posts={listPosts} />
+
+      {/* Popular Posts - only show when all and no search */}
       {activeCategory === 'all' && searchTerm === '' && (
         <PopularPosts posts={popularPosts} />
       )}
 
-      {/* Main Content */}
-      <main className="container mx-auto px-4 py-12">
-        <div className="max-w-4xl mx-auto space-y-8">
-          {filteredPosts.length > 0 ? (
-            filteredPosts.map(({ node }) => {
-              const { title, date, category, tags, author, description } = node.frontmatter
-              const { slug } = node.fields
-              return (
-                <article key={slug} className="hover-lift bg-card border border-border p-6 md:p-8">
-                  <div className="mb-3">
-                    <span className="font-display text-xs font-medium text-primary uppercase tracking-wider">
-                      {category}
-                    </span>
-                    <span className="font-body text-sm text-muted-foreground ml-4">
-                      {date}
-                    </span>
-                  </div>
-                  <h2 className="font-display text-xl md:text-2xl font-semibold editorial-heading mb-3 text-foreground">
-                    {title}
-                  </h2>
-                  <p className="font-body text-sm md:text-base text-muted-foreground mb-4 leading-relaxed line-clamp-2">
-                    {description}
-                  </p>
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {tags?.slice(0, 4).map(tag => (
-                      <span
-                        key={tag}
-                        className="font-display text-xs text-muted-foreground"
-                      >
-                        #{tag}
-                      </span>
-                    ))}
-                  </div>
-                  <div className="flex items-center justify-between pt-4 border-t border-border">
-                    <span className="font-body text-xs text-muted-foreground">
-                      By {author}
-                    </span>
-                    <span className="font-display text-xs text-primary">
-                      Read article →
-                    </span>
-                  </div>
-                </article>
-              )
-            })
-          ) : (
-            <div className="text-center py-12">
-              <p className="font-body text-muted-foreground">No articles found matching your criteria.</p>
-            </div>
-          )}
-        </div>
-      </main>
+      {/* Article Series - only show when all and no search */}
+      {activeCategory === 'all' && searchTerm === '' && (
+        <ArticleSeries />
+      )}
 
       {/* Footer */}
       <footer className="border-t border-border mt-20">
