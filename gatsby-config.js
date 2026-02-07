@@ -29,6 +29,13 @@ module.exports = {
     },
     `gatsby-transformer-remark`,
     {
+      resolve: `gatsby-remark-shiki`,
+      options: {
+        theme: 'github-dark',
+        wrapInlineCodeIn: '`',
+      },
+    },
+    {
       resolve: `gatsby-plugin-manifest`,
       options: {
         name: `Aesop's Tech Blog`,

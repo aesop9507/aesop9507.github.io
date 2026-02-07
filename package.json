@@ -22,6 +22,7 @@
     "gatsby-plugin-postcss": "^6.16.0",
     "gatsby-plugin-react-helmet": "^6.16.0",
     "gatsby-plugin-sharp": "^5.16.0",
+    "gatsby-remark-shiki": "^0.2.1",
     "gatsby-source-filesystem": "^5.16.0",
     "gatsby-transformer-remark": "^6.16.0",
     "gatsby-transformer-sharp": "^5.16.0",

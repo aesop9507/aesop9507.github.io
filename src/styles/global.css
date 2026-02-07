@@ -236,7 +236,9 @@
   }
 
   .prose pre {
-    @apply bg-muted p-6 md:p-8 overflow-x-auto;
+    background-color: #1e293b;
+    padding: 1.5rem;
+    overflow-x: auto;
     border: 1px solid hsl(var(--border));
     border-radius: 0.5rem;
     font-size: 0.9375rem;
@@ -244,10 +246,19 @@
     font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', 'Monaco', monospace;
   }
 
+  .dark .prose pre {
+    background-color: #0f172a;
+    border-color: #1e293b;
+  }
+
   .prose pre code {
     @apply bg-transparent p-0;
-    color: inherit;
+    color: #e2e8f0;
     font-family: inherit;
+  }
+
+  .dark .prose pre code {
+    color: #f1f5f9;
   }
 
   .prose a {
