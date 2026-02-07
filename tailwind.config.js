@@ -9,6 +9,7 @@ module.exports = {
       fontFamily: {
         display: ['"Space Grotesk"', '"Pretendard"', 'sans-serif'],
         body: ['"Pretendard"', '-apple-system', 'BlinkMacSystemFont', 'system-ui', 'sans-serif'],
+        mono: ['"JetBrains Mono"', '"Fira Code"', 'Consolas', 'Monaco', 'monospace'],
       },
       colors: {
         border: "hsl(var(--border))",
