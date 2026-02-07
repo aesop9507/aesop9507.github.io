@@ -12,6 +12,7 @@ const IndexPage = ({ data }) => {
   const [isDarkMode, setIsDarkMode] = React.useState(false)
   const [searchTerm, setSearchTerm] = React.useState('')
   const [featuredIndex, setFeaturedIndex] = React.useState(0)
+  const [showSearchInput, setShowSearchInput] = React.useState(false)
 
   // Default to dark mode
   React.useEffect(() => {
@@ -48,7 +49,7 @@ const IndexPage = ({ data }) => {
   })
 
   // Featured post navigation
-  const featuredPost = allPosts[featuredIndex]?.node
+  const featuredPost = allPosts[0]?.node
   const onPrev = () => setFeaturedIndex(Math.max(0, featuredIndex - 1))
   const onNext = () => setFeaturedIndex(Math.min(allPosts.length - 1, featuredIndex + 1))
 
@@ -67,21 +68,26 @@ const IndexPage = ({ data }) => {
         <meta name="description" content="Technical articles on frontend, backend, and architecture" />
       </Helmet>
 
-      <Header isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} />
+      <Header 
+        isDarkMode={isDarkMode} 
+        toggleDarkMode={toggleDarkMode}
+        showSearchInput={showSearchInput}
+        setShowSearchInput={setShowSearchInput}
+      />
 
-      {/* Search Bar - only show when not searching */}
-      {searchTerm === '' && (
+      {/* Search Bar - show when search is active */}
+      {showSearchInput && (
         <div className="container mx-auto px-4 py-4">
-          <button className="p-2 rounded-lg hover:bg-muted transition-colors" aria-label="검색">
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-            </svg>
-          </button>
+          <SearchBar 
+            searchTerm={searchTerm} 
+            onSearch={setSearchTerm}
+            onClose={() => setShowSearchInput(false)}
+          />
         </div>
       )}
 
       {/* Featured Post - only show when no search */}
-      {searchTerm === '' && featuredPost && (
+      {!showSearchInput && searchTerm === '' && featuredPost && (
         <FeaturedPost
           post={featuredPost}
           onPrev={onPrev}
@@ -95,12 +101,12 @@ const IndexPage = ({ data }) => {
       <ArticleList posts={listPosts} />
 
       {/* Popular Posts - only show when no search */}
-      {searchTerm === '' && popularPosts.length > 0 && (
+      {!showSearchInput && searchTerm === '' && popularPosts.length > 0 && (
         <PopularPosts posts={popularPosts} />
       )}
 
       {/* Article Series - only show when no search */}
-      {searchTerm === '' && <ArticleSeries />}
+      {!showSearchInput && searchTerm === '' && <ArticleSeries />}
 
       {/* Footer */}
       <footer className="border-t border-border mt-20">

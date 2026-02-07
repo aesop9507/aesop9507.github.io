@@ -11,11 +11,23 @@ const ArticleList = ({ posts }) => {
     return 'text-muted-foreground'
   }
 
+  if (!posts || posts.length === 0) {
+    return (
+      <section className="container mx-auto px-4 py-12">
+        <div className="max-w-4xl mx-auto text-center">
+          <p className="font-body text-lg text-muted-foreground">
+            검색 결과가 없습니다.
+          </p>
+        </div>
+      </section>
+    )
+  }
+
   return (
     <section className="container mx-auto px-4 py-8">
       <div className="max-w-4xl mx-auto">
         <h3 className="font-display text-xl font-semibold text-foreground mb-8">
-          전체 아티클
+          {posts.length}개의 아티클
         </h3>
 
         <div className="space-y-0 divide-y divide-border">
@@ -47,6 +59,15 @@ const ArticleList = ({ posts }) => {
                   <p className="font-body text-sm text-muted-foreground leading-relaxed line-clamp-2">
                     {description}
                   </p>
+
+                  {/* Tags */}
+                  <div className="flex flex-wrap gap-2 mt-3">
+                    {tags?.slice(0, 4).map(tag => (
+                      <span key={tag} className="text-xs text-muted-foreground hover:text-primary transition-colors cursor-pointer">
+                        #{tag}
+                      </span>
+                    ))}
+                  </div>
                 </Link>
               </article>
             )
