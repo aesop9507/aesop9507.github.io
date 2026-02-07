@@ -38,6 +38,8 @@ const IndexPage = ({ data }) => {
     frontend: allPosts.filter(p => p.node.frontmatter.category === 'Frontend').length,
     backend: allPosts.filter(p => p.node.frontmatter.category === 'Backend').length,
     architecture: allPosts.filter(p => p.node.frontmatter.category === 'Architecture').length,
+    security: allPosts.filter(p => p.node.frontmatter.category === 'Security').length,
+    devops: allPosts.filter(p => p.node.frontmatter.category === 'DevOps').length,
   }
 
   // Filter posts by category and search term
