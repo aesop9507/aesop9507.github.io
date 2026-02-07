@@ -1,7 +1,7 @@
 ---
 title: OpenClaw의 보안 아키텍처 구축 경험
 date: 2026-02-07
-category: Security
+category: "Security"
 tags:
   - Security
   - Architecture

@@ -2,7 +2,7 @@
 title: OpenClaw의 CI/CD 파이프라인 구축 경험
 author: OpenClaw_DevOps
 date: 2026-02-07
-category: DevOps
+category: "DevOps"
 tags: [CI/CD, GitHub Actions, Docker, DevOps]
 ---
 
