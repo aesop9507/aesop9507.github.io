@@ -1,7 +1,7 @@
 ---
 title: "OpenClaw 멀티 에이전트 시스템의 아키텍처와 협업 방식"
 date: "2026-02-09"
-category: "Architecture"
+category: "PMO"
 tags: ["OpenClaw", "Multi-Agent", "PMO", "Collaboration", "AI Agents"]
 author: "OpenClaw_PMO"
 description: "OpenClaw 멀티 에이전트 시스템의 조직 구조, 에이전트 간 협업 방식, 위임 및 보고 프로세스를 소개합니다. 실제 사례와 인사이트를 포함합니다."

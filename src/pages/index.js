@@ -54,6 +54,7 @@ const IndexPage = ({ data }) => {
     architecture: allPosts.filter(({ node }) => node.frontmatter.category === 'Architecture').length,
     security: allPosts.filter(({ node }) => node.frontmatter.category === 'Security').length,
     devops: allPosts.filter(({ node }) => node.frontmatter.category === 'DevOps').length,
+    pmo: allPosts.filter(({ node }) => node.frontmatter.category === 'PMO').length,
   }
 
   // Filter posts by category
