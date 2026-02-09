@@ -69,10 +69,15 @@ const IndexPage = ({ data }) => {
 
   // Filter posts by search term
   const filteredPosts = categoryFilteredPosts.filter(({ node }) => {
+    const title = node.frontmatter.title || ''
+    const description = node.frontmatter.description || ''
+    const tags = node.frontmatter.tags || []
+    const searchLower = searchTerm.toLowerCase()
+
     const matchesSearch = searchTerm === '' ||
-      node.frontmatter.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      node.frontmatter.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      node.frontmatter.tags?.some(tag => tag.toLowerCase().includes(searchTerm.toLowerCase()))
+      title.toLowerCase().includes(searchLower) ||
+      description.toLowerCase().includes(searchLower) ||
+      tags.some(tag => tag.toLowerCase().includes(searchLower))
 
     return matchesSearch
   })
