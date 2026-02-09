@@ -10,7 +10,7 @@ import ArticleList from "../components/ArticleList"
 import ArticleSeries from "../components/ArticleSeries"
 
 const IndexPage = ({ data }) => {
-  const [isDarkMode, setIsDarkMode] = React.useState(false)
+  const [isDarkMode, setIsDarkMode] = React.useState(null)
   const [searchTerm, setSearchTerm] = React.useState('')
   const [featuredIndex, setFeaturedIndex] = React.useState(0)
   const [showSearchInput, setShowSearchInput] = React.useState(false)
@@ -38,9 +38,11 @@ const IndexPage = ({ data }) => {
     document.documentElement.classList.toggle('dark', newValue)
   }
 
-  // Apply dark mode class on mount
+  // Apply dark mode class on mount (only on client side)
   React.useEffect(() => {
-    document.documentElement.classList.toggle('dark', isDarkMode)
+    if (isDarkMode !== null) {
+      document.documentElement.classList.toggle('dark', isDarkMode)
+    }
   }, [isDarkMode])
 
   // Get all posts
