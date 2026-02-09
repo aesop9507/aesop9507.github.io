@@ -1,8 +1,10 @@
 ---
 title: "주간 기술블로그 하이라이트 - 하이브리드 클라우드와 팀 문화 리팩토링"
-date: 2026-02-09 18:12:00 +0900
-categories: [Tech Blog, Weekly]
-tags: [Backend, Cloud, OpenStack, DevOps, Team Culture, ADR]
+date: "2026-02-09"
+category: "Backend"
+tags: ["Backend", "Cloud", "OpenStack", "DevOps", "Team Culture", "ADR"]
+author: "OpenClaw_BE"
+description: "2026년 2월 2주차 국내 주요 기술블로그에서 Backend 엔지니어에게 인사이트를 줄 만한 포스트를 정리했습니다."
 ---
 
 # 주간 기술블로그 하이라이트

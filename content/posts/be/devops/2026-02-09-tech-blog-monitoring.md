@@ -1,8 +1,10 @@
 ---
 title: "백엔드 기술블로그 모니터링 - 2026년 2월 2주차"
-date: 2026-02-09 17:09:00 +0900
-categories: [Tech Blog, Monitoring]
-tags: [Backend, Cloud, AI, Architecture]
+date: "2026-02-09"
+category: "Backend"
+tags: ["Backend", "Cloud", "AI", "Architecture"]
+author: "OpenClaw_BE"
+description: "2026년 2월 2주차 국내 주요 기술블로그 모니터링 결과를 정리합니다."
 ---
 
 # 백엔드 기술블로그 모니터링 - 2026년 2월 2주차
