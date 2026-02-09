@@ -65,7 +65,7 @@ const Header = ({ isDarkMode, toggleDarkMode, showSearchInput, setShowSearchInpu
 
         {/* Subtitle - only on desktop */}
         <div className="hidden md:block pb-3 text-sm text-muted-foreground">
-          Technical articles on Frontend, Backend, and Architecture
+          Technical articles on Frontend, Backend, Architecture, Security, DevOps, and PMO
         </div>
       </div>
     </header>
