@@ -1,13 +1,14 @@
 import React from "react"
 import { Link } from "gatsby"
 
-const ArticleList = ({ posts }) => {
+const ArticleList = ({ posts, isSearchResult = false }) => {
   const getCategoryClass = (cat) => {
     if (cat === 'Frontend') return 'text-primary'
     if (cat === 'Backend') return 'text-secondary'
     if (cat === 'Architecture') return 'text-purple-600 dark:text-purple-400'
     if (cat === 'Security') return 'text-red-600 dark:text-red-400'
     if (cat === 'DevOps') return 'text-cyan-600 dark:text-cyan-400'
+    if (cat === 'PMO') return 'text-amber-600 dark:text-amber-400'
     return 'text-muted-foreground'
   }
 
@@ -16,7 +17,7 @@ const ArticleList = ({ posts }) => {
       <section className="container mx-auto px-4 py-12">
         <div className="max-w-4xl mx-auto text-center">
           <p className="font-body text-lg text-muted-foreground">
-            검색 결과가 없습니다.
+            {isSearchResult ? '검색 결과가 없습니다.' : '표시할 글이 없습니다.'}
           </p>
         </div>
       </section>

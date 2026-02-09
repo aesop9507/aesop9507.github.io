@@ -137,7 +137,7 @@ const IndexPage = ({ data }) => {
       )}
 
       {/* Main Content - Article List */}
-      <ArticleList posts={listPosts} />
+      <ArticleList posts={listPosts} isSearchResult={searchTerm !== ''} />
 
       {/* Popular Posts - only show when no search */}
       {!showSearchInput && searchTerm === '' && popularPosts.length > 0 && (

@@ -27,34 +27,6 @@ const Header = ({ isDarkMode, toggleDarkMode, showSearchInput, setShowSearchInpu
             Aesop's Blog
           </Link>
 
-          {/* Center - Categories */}
-          <nav className="hidden md:flex items-center gap-1">
-            <Link
-              to="/"
-              className="px-4 py-2 text-sm font-medium text-foreground hover:bg-muted rounded-lg transition-colors"
-            >
-              전체
-            </Link>
-            <Link
-              to="/"
-              className="px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted rounded-lg transition-colors"
-            >
-              Frontend
-            </Link>
-            <Link
-              to="/"
-              className="px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted rounded-lg transition-colors"
-            >
-              Backend
-            </Link>
-            <Link
-              to="/"
-              className="px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted rounded-lg transition-colors"
-            >
-              DevOps
-            </Link>
-          </nav>
-
           {/* Right side */}
           <div className="flex items-center gap-2">
             {/* Search Button */}
@@ -93,7 +65,7 @@ const Header = ({ isDarkMode, toggleDarkMode, showSearchInput, setShowSearchInpu
 
         {/* Subtitle - only on desktop */}
         <div className="hidden md:block pb-3 text-sm text-muted-foreground">
-          Frontend · Backend · Architecture
+          Technical articles on Frontend, Backend, and Architecture
         </div>
       </div>
     </header>
