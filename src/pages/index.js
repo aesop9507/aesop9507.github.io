@@ -116,6 +116,10 @@ const IndexPage = ({ data, location }) => {
         toggleDarkMode={toggleDarkMode}
         showSearchInput={showSearchInput}
         setShowSearchInput={setShowSearchInput}
+        activeCategory={activeCategory}
+        onCategoryChange={handleCategoryChange}
+        categoryCounts={categoryCounts}
+        showCategoryFilter={!showSearchInput && searchTerm === ''}
       />
 
       {/* Search Bar - show when search is active */}
@@ -127,15 +131,6 @@ const IndexPage = ({ data, location }) => {
             onClose={() => setShowSearchInput(false)}
           />
         </div>
-      )}
-
-      {/* Category Filter - only show when no search */}
-      {!showSearchInput && searchTerm === '' && (
-        <CategoryFilter
-          activeCategory={activeCategory}
-          onCategoryChange={handleCategoryChange}
-          counts={categoryCounts}
-        />
       )}
 
       {/* Featured Post - only show when no search */}
