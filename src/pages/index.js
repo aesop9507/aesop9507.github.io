@@ -63,7 +63,7 @@ const IndexPage = ({ data }) => {
   const categoryFilteredPosts = activeCategory === 'all'
     ? allPosts
     : allPosts.filter(({ node }) => {
-        const cat = node.frontmatter.category.toLowerCase()
+        const cat = node.frontmatter.category
         return cat === activeCategory
       })
 
