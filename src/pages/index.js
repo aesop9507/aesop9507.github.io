@@ -93,7 +93,7 @@ const IndexPage = ({ data }) => {
 
   // Don't show featured post in regular list when no search
   const listPosts = searchTerm === ''
-    ? categoryFilteredPosts.slice(1)
+    ? categoryFilteredPosts.filter((_, index) => index !== featuredIndex)
     : filteredPosts
 
   // Get popular posts (top 4, exclude featured)
