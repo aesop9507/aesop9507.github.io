@@ -116,10 +116,6 @@ const IndexPage = ({ data, location }) => {
         toggleDarkMode={toggleDarkMode}
         showSearchInput={showSearchInput}
         setShowSearchInput={setShowSearchInput}
-        activeCategory={activeCategory}
-        onCategoryChange={handleCategoryChange}
-        categoryCounts={categoryCounts}
-        showCategoryFilter={!showSearchInput && searchTerm === ''}
       />
 
       {/* Search Bar - show when search is active */}
@@ -133,7 +129,7 @@ const IndexPage = ({ data, location }) => {
         </div>
       )}
 
-      {/* Featured Post - only show when no search */}
+      {/* Featured Post (Banner) - only show when no search */}
       {!showSearchInput && searchTerm === '' && featuredPost && (
         <FeaturedPost
           post={featuredPost}
@@ -141,6 +137,15 @@ const IndexPage = ({ data, location }) => {
           onNext={onNext}
           hasPrev={hasPrev}
           hasNext={hasNext}
+        />
+      )}
+
+      {/* Category Filter Tabs - below banner */}
+      {!showSearchInput && searchTerm === '' && (
+        <CategoryFilter
+          activeCategory={activeCategory}
+          onCategoryChange={handleCategoryChange}
+          counts={categoryCounts}
         />
       )}
 

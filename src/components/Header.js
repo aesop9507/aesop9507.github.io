@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react"
 import { Link } from "gatsby"
 
-const Header = ({ isDarkMode, toggleDarkMode, showSearchInput, setShowSearchInput, activeCategory, onCategoryChange, categoryCounts, showCategoryFilter }) => {
+const Header = ({ isDarkMode, toggleDarkMode, showSearchInput, setShowSearchInput }) => {
   const [isScrolled, setIsScrolled] = useState(false)
 
   useEffect(() => {
@@ -67,34 +67,6 @@ const Header = ({ isDarkMode, toggleDarkMode, showSearchInput, setShowSearchInpu
         <div className="hidden md:block pb-3 text-sm text-muted-foreground">
           Technical articles on Frontend, Backend, Architecture, Security, DevOps, and PMO
         </div>
-
-        {/* Category Tabs - bottom of header */}
-        {showCategoryFilter && categoryCounts && (
-          <div className="flex flex-wrap gap-2 pb-4">
-            {[
-              { id: 'all', label: 'All', count: categoryCounts.all },
-              { id: 'Frontend', label: 'Frontend', count: categoryCounts.frontend },
-              { id: 'Backend', label: 'Backend', count: categoryCounts.backend },
-              { id: 'Architecture', label: 'Architecture', count: categoryCounts.architecture },
-              { id: 'Security', label: 'Security', count: categoryCounts.security },
-              { id: 'DevOps', label: 'DevOps', count: categoryCounts.devops },
-              { id: 'PMO', label: 'PMO', count: categoryCounts.pmo },
-            ].map(cat => (
-              <button
-                key={cat.id}
-                onClick={() => onCategoryChange(cat.id)}
-                className={`font-display text-sm px-4 py-2 rounded-full transition-all duration-200 ${
-                  activeCategory === cat.id
-                    ? 'bg-primary text-primary-foreground'
-                    : 'bg-muted text-muted-foreground hover:bg-muted/80'
-                }`}
-              >
-                {cat.label}
-                <span className="ml-2 text-xs opacity-70">({cat.count})</span>
-              </button>
-            ))}
-          </div>
-        )}
       </div>
     </header>
   )
