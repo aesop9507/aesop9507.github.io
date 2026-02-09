@@ -19,12 +19,12 @@ const FeaturedPost = ({ post, onPrev, onNext, hasPrev, hasNext }) => {
   }
 
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-primary/5 via-background to-secondary/5 dark:from-primary/10 dark:via-background dark:to-secondary/10">
-      <div className="container mx-auto px-4 py-12 md:py-16">
-        <div className="max-w-6xl mx-auto">
-          <Link to={slug} className="block group">
+    <section className="relative overflow-hidden bg-gradient-to-br from-primary/5 via-background to-secondary/5 dark:from-primary/10 dark:via-background dark:to-secondary/10 h-[320px] md:h-[360px]">
+      <div className="container mx-auto px-4 py-8 md:py-10 h-full flex flex-col">
+        <div className="max-w-6xl mx-auto flex-1 flex flex-col justify-between w-full">
+          <Link to={slug} className="block group flex-1 overflow-hidden">
             {/* Category & Date */}
-            <div className="flex items-center gap-3 mb-6">
+            <div className="flex items-center gap-3 mb-4">
               <span className={getCategoryClass(category)}>
                 {category}
               </span>
@@ -32,17 +32,17 @@ const FeaturedPost = ({ post, onPrev, onNext, hasPrev, hasNext }) => {
             </div>
 
             {/* Title */}
-            <h1 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4 group-hover:text-primary transition-colors leading-tight">
+            <h1 className="font-display text-2xl md:text-3xl lg:text-4xl font-bold text-foreground mb-3 group-hover:text-primary transition-colors leading-tight line-clamp-2">
               {title}
             </h1>
 
             {/* Description */}
-            <p className="font-body text-base md:text-lg text-muted-foreground mb-8 leading-relaxed max-w-3xl">
+            <p className="font-body text-base md:text-lg text-muted-foreground mb-4 leading-relaxed max-w-3xl line-clamp-2">
               {description}
             </p>
 
             {/* Tags */}
-            <div className="flex flex-wrap gap-2 mb-8">
+            <div className="flex flex-wrap gap-2">
               {tags?.slice(0, 6).map(tag => (
                 <span key={tag} className="inline-block px-2 py-0.5 text-xs font-medium rounded-full bg-muted text-muted-foreground hover:text-primary transition-colors cursor-pointer">
                   #{tag}
@@ -51,8 +51,8 @@ const FeaturedPost = ({ post, onPrev, onNext, hasPrev, hasNext }) => {
             </div>
           </Link>
 
-          {/* Navigation buttons - like Toss */}
-          <div className="flex items-center gap-3">
+          {/* Navigation buttons */}
+          <div className="flex items-center gap-3 pt-4">
             <button
               onClick={onPrev}
               disabled={!hasPrev}
