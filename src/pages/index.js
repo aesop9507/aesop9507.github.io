@@ -67,8 +67,8 @@ const IndexPage = ({ data }) => {
         return cat === activeCategory
       })
 
-  // Filter posts by search term
-  const filteredPosts = categoryFilteredPosts.filter(({ node }) => {
+  // Filter posts by search term - search across all posts, not just categoryFiltered
+  const filteredPosts = allPosts.filter(({ node }) => {
     const title = node.frontmatter.title || ''
     const description = node.frontmatter.description || ''
     const tags = node.frontmatter.tags || []
