@@ -1,5 +1,5 @@
 import * as React from "react"
-import { graphql } from "gatsby"
+import { graphql, navigate } from "gatsby"
 import { Helmet } from "react-helmet"
 import Header from "../components/Header"
 import CategoryFilter from "../components/CategoryFilter"
@@ -9,17 +9,22 @@ import FeaturedPost from "../components/FeaturedPost"
 import ArticleList from "../components/ArticleList"
 import ArticleSeries from "../components/ArticleSeries"
 
-const IndexPage = ({ data }) => {
+const IndexPage = ({ data, location }) => {
   const [isDarkMode, setIsDarkMode] = React.useState(null)
   const [searchTerm, setSearchTerm] = React.useState('')
   const [featuredIndex, setFeaturedIndex] = React.useState(0)
   const [showSearchInput, setShowSearchInput] = React.useState(false)
-  const [activeCategory, setActiveCategory] = React.useState('all')
 
-  // Reset featured index when category changes
+  // Get category from URL query string
+  const urlParams = new URLSearchParams(location.search)
+  const urlCategory = urlParams.get('category') || 'all'
+  const [activeCategory, setActiveCategory] = React.useState(urlCategory)
+
+  // Update URL when category changes
   const handleCategoryChange = (newCategory) => {
     setActiveCategory(newCategory)
     setFeaturedIndex(0)
+    navigate(`/?category=${newCategory}`, { replace: true })
   }
 
   // Default to dark mode
@@ -82,14 +87,14 @@ const IndexPage = ({ data }) => {
     return matchesSearch
   })
 
-  // Featured post - use categoryFilteredPosts
-  const featuredPost = categoryFilteredPosts[featuredIndex]?.node
+  // Featured post - use allPosts (independent of category filter)
+  const featuredPost = allPosts[featuredIndex]?.node
 
-  // Featured post navigation - use categoryFilteredPosts length
+  // Featured post navigation - use allPosts length
   const onPrev = () => setFeaturedIndex(Math.max(0, featuredIndex - 1))
-  const onNext = () => setFeaturedIndex(Math.min(categoryFilteredPosts.length - 1, featuredIndex + 1))
+  const onNext = () => setFeaturedIndex(Math.min(allPosts.length - 1, featuredIndex + 1))
   const hasPrev = featuredIndex > 0
-  const hasNext = featuredIndex < categoryFilteredPosts.length - 1
+  const hasNext = featuredIndex < allPosts.length - 1
 
   // Show all posts in article list (including featured post)
   const listPosts = searchTerm === ''
