@@ -2,6 +2,7 @@ import * as React from "react"
 import { graphql } from "gatsby"
 import { Helmet } from "react-helmet"
 import Header from "../components/Header"
+import CategoryFilter from "../components/CategoryFilter"
 import SearchBar from "../components/SearchBar"
 import PopularPosts from "../components/PopularPosts"
 import FeaturedPost from "../components/FeaturedPost"
@@ -13,6 +14,13 @@ const IndexPage = ({ data }) => {
   const [searchTerm, setSearchTerm] = React.useState('')
   const [featuredIndex, setFeaturedIndex] = React.useState(0)
   const [showSearchInput, setShowSearchInput] = React.useState(false)
+  const [activeCategory, setActiveCategory] = React.useState('all')
+
+  // Reset featured index when category changes
+  const handleCategoryChange = (newCategory) => {
+    setActiveCategory(newCategory)
+    setFeaturedIndex(0)
+  }
 
   // Default to dark mode
   React.useEffect(() => {
@@ -38,8 +46,26 @@ const IndexPage = ({ data }) => {
   // Get all posts
   const allPosts = data.allMarkdownRemark.edges
 
+  // Count posts by category
+  const categoryCounts = {
+    all: allPosts.length,
+    frontend: allPosts.filter(({ node }) => node.frontmatter.category === 'Frontend').length,
+    backend: allPosts.filter(({ node }) => node.frontmatter.category === 'Backend').length,
+    architecture: allPosts.filter(({ node }) => node.frontmatter.category === 'Architecture').length,
+    security: allPosts.filter(({ node }) => node.frontmatter.category === 'Security').length,
+    devops: allPosts.filter(({ node }) => node.frontmatter.category === 'DevOps').length,
+  }
+
+  // Filter posts by category
+  const categoryFilteredPosts = activeCategory === 'all'
+    ? allPosts
+    : allPosts.filter(({ node }) => {
+        const cat = node.frontmatter.category.toLowerCase()
+        return cat === activeCategory
+      })
+
   // Filter posts by search term
-  const filteredPosts = allPosts.filter(({ node }) => {
+  const filteredPosts = categoryFilteredPosts.filter(({ node }) => {
     const matchesSearch = searchTerm === '' ||
       node.frontmatter.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
       node.frontmatter.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -48,14 +74,18 @@ const IndexPage = ({ data }) => {
     return matchesSearch
   })
 
-  // Featured post navigation
-  const featuredPost = allPosts[0]?.node
+  // Featured post - use categoryFilteredPosts
+  const featuredPost = categoryFilteredPosts[featuredIndex]?.node
+
+  // Featured post navigation - use categoryFilteredPosts length
   const onPrev = () => setFeaturedIndex(Math.max(0, featuredIndex - 1))
-  const onNext = () => setFeaturedIndex(Math.min(allPosts.length - 1, featuredIndex + 1))
+  const onNext = () => setFeaturedIndex(Math.min(categoryFilteredPosts.length - 1, featuredIndex + 1))
+  const hasPrev = featuredIndex > 0
+  const hasNext = featuredIndex < categoryFilteredPosts.length - 1
 
   // Don't show featured post in regular list when no search
   const listPosts = searchTerm === ''
-    ? allPosts.slice(1)
+    ? categoryFilteredPosts.slice(1)
     : filteredPosts
 
   // Get popular posts (top 4, exclude featured)
@@ -78,12 +108,21 @@ const IndexPage = ({ data }) => {
       {/* Search Bar - show when search is active */}
       {showSearchInput && (
         <div className="container mx-auto px-4 py-4">
-          <SearchBar 
-            searchTerm={searchTerm} 
+          <SearchBar
+            searchTerm={searchTerm}
             onSearch={setSearchTerm}
             onClose={() => setShowSearchInput(false)}
           />
         </div>
+      )}
+
+      {/* Category Filter - only show when no search */}
+      {!showSearchInput && searchTerm === '' && (
+        <CategoryFilter
+          activeCategory={activeCategory}
+          onCategoryChange={handleCategoryChange}
+          counts={categoryCounts}
+        />
       )}
 
       {/* Featured Post - only show when no search */}
@@ -92,8 +131,8 @@ const IndexPage = ({ data }) => {
           post={featuredPost}
           onPrev={onPrev}
           onNext={onNext}
-          hasPrev={featuredIndex > 0}
-          hasNext={featuredIndex < allPosts.length - 1}
+          hasPrev={hasPrev}
+          hasNext={hasNext}
         />
       )}
 

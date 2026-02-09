@@ -360,6 +360,11 @@
   color: hsl(200 70% 45%);
 }
 
+.category-badge-PMO {
+  background-color: hsl(38 90% 95%);
+  color: hsl(38 90% 55%);
+}
+
 .dark .category-badge-Frontend {
   background-color: hsl(155 70% 20%);
   color: hsl(155 70% 75%);
@@ -383,4 +388,9 @@
 .dark .category-badge-DevOps {
   background-color: hsl(200 70% 20%);
   color: hsl(200 70% 70%);
+}
+
+.dark .category-badge-PMO {
+  background-color: hsl(38 90% 20%);
+  color: hsl(38 90% 70%);
 }

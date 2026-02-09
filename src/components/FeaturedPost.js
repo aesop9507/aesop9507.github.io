@@ -14,6 +14,7 @@ const FeaturedPost = ({ post, onPrev, onNext, hasPrev, hasNext }) => {
     if (cat === 'Architecture') return `${baseClass} category-badge-Architecture`
     if (cat === 'Security') return `${baseClass} category-badge-Security`
     if (cat === 'DevOps') return `${baseClass} category-badge-DevOps`
+    if (cat === 'PMO') return `${baseClass} category-badge-PMO`
     return `${baseClass} bg-muted text-muted-foreground`
   }
 

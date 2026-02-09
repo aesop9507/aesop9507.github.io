@@ -8,6 +8,7 @@ const CategoryFilter = ({ activeCategory, onCategoryChange, counts }) => {
     { id: 'Architecture', label: 'Architecture', count: counts.architecture },
     { id: 'Security', label: 'Security', count: counts.security },
     { id: 'DevOps', label: 'DevOps', count: counts.devops },
+    { id: 'PMO', label: 'PMO', count: counts.pmo },
   ]
 
   return (
