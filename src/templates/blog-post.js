@@ -57,7 +57,7 @@ const BlogPostTemplate = ({ data, pageContext }) => {
               {tags?.map(tag => (
                 <span
                   key={tag}
-                  className="font-display text-xs text-muted-foreground"
+                  className="inline-block px-3 py-1 text-xs font-medium rounded-full bg-muted text-muted-foreground"
                 >
                   #{tag}
                 </span>

@@ -44,7 +44,7 @@ const FeaturedPost = ({ post, onPrev, onNext, hasPrev, hasNext }) => {
             {/* Tags */}
             <div className="flex flex-wrap gap-2 mb-8">
               {tags?.slice(0, 6).map(tag => (
-                <span key={tag} className="text-xs text-muted-foreground hover:text-primary transition-colors cursor-pointer">
+                <span key={tag} className="inline-block px-2 py-0.5 text-xs font-medium rounded-full bg-muted text-muted-foreground hover:text-primary transition-colors cursor-pointer">
                   #{tag}
                 </span>
               ))}
