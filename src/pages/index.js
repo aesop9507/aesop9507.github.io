@@ -91,9 +91,9 @@ const IndexPage = ({ data }) => {
   const hasPrev = featuredIndex > 0
   const hasNext = featuredIndex < categoryFilteredPosts.length - 1
 
-  // Don't show featured post in regular list when no search
+  // Show all posts in article list (including featured post)
   const listPosts = searchTerm === ''
-    ? categoryFilteredPosts.filter((_, index) => index !== featuredIndex)
+    ? categoryFilteredPosts
     : filteredPosts
 
   // Get popular posts (top 4, exclude featured)
