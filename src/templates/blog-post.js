@@ -2,16 +2,42 @@ import * as React from "react"
 import { graphql, Link } from "gatsby"
 import { Helmet } from "react-helmet"
 
-const BlogPostTemplate = ({ data, pageContext }) => {
+const BlogPostTemplate = ({ data, pageContext, location }) => {
   const post = data.markdownRemark
   const { previous, next } = pageContext
   const { title, date, category, tags, author, description } = post.frontmatter
+  const { slug } = post.fields
+
+  const siteUrl = "https://aesop9507.github.io"
+  const imageUrl = `${siteUrl}/og-image.png`
 
   return (
     <div className="min-h-screen bg-background text-foreground">
       <Helmet>
         <title>{title} - Aesop's Tech Blog</title>
         <meta name="description" content={description} />
+
+        {/* Open Graph */}
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description} />
+        <meta property="og:image" content={imageUrl} />
+        <meta property="og:url" content={`${siteUrl}${slug}`} />
+        <meta property="og:type" content="article" />
+        <meta property="og:site_name" content="Aesop's Tech Blog" />
+
+        {/* Article specific */}
+        <meta property="article:author" content={author} />
+        <meta property="article:published_time" content={date} />
+        <meta property="article:section" content={category} />
+        {tags?.map((tag) => (
+          <meta key={tag} property="article:tag" content={tag} />
+        ))}
+
+        {/* Twitter Card */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={title} />
+        <meta name="twitter:description" content={description} />
+        <meta name="twitter:image" content={imageUrl} />
       </Helmet>
 
       {/* Header */}

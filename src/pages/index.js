@@ -109,6 +109,20 @@ const IndexPage = ({ data, location }) => {
       <Helmet>
         <title>Aesop's Tech Blog</title>
         <meta name="description" content="Technical articles on frontend, backend, and architecture" />
+
+        {/* Open Graph */}
+        <meta property="og:title" content="Aesop's Tech Blog" />
+        <meta property="og:description" content="Technical articles on frontend, backend, architecture, security, devops, and PMO" />
+        <meta property="og:image" content="https://aesop9507.github.io/og-image.png" />
+        <meta property="og:url" content="https://aesop9507.github.io/" />
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="Aesop's Tech Blog" />
+
+        {/* Twitter Card */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Aesop's Tech Blog" />
+        <meta name="twitter:description" content="Technical articles on frontend, backend, architecture, security, devops, and PMO" />
+        <meta name="twitter:image" content="https://aesop9507.github.io/og-image.png" />
       </Helmet>
 
       <Header 

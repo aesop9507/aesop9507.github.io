@@ -1,0 +1,14 @@
+<svg width="1200" height="630" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1e293b"/>
+      <stop offset="50%" style="stop-color:#0f172a"/>
+      <stop offset="100%" style="stop-color:#1e293b"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <text x="60" y="280" font-family="Pretendard, -apple-system, sans-serif" font-size="48" font-weight="700" fill="#e2e8f0">Aesop's Tech Blog</text>
+  <text x="60" y="340" font-family="Pretendard, -apple-system, sans-serif" font-size="28" font-weight="400" fill="#94a3b8">Frontend · Backend · Architecture · Security · DevOps · PMO</text>
+  <rect x="60" y="400" width="200" height="4" fill="#10b981" rx="2"/>
+  <text x="60" y="460" font-family="Pretendard, -apple-system, sans-serif" font-size="20" fill="#64748b">Technical articles &amp; insights</text>
+</svg>
