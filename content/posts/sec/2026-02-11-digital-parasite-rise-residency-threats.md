@@ -1,10 +1,20 @@
-# 랜섬웨어의 퇴조, 디지털 기생충의 부상 - 현대 사이버 공격의 은밀한 전략 변화
+---
+title: 랜섬웨어의 퇴조, 디지털 기생충의 부상 - 현대 사이버 공격의 은밀한 전략 변화
+date: 2026-02-11
+description: 지난 10년간 랜섬웨어가 사이버 위협의 대명사였지만, 2025년의 공격 데이터는 명백한 변화를 보여줍니다. Picus Labs의 Red Report 2026이 밝혀낸 새로운 위협 환경을 분석합니다.
+tags: [Security, Threat Intelligence, MITRE ATT&CK, Ransomware, Digital Parasite]
+category: Security
+---
 
-> **요약**: 지난 10년간 랜섬웨어가 사이버 위협의 대명사였지만, 2025년의 공격 데이터는 명백한 변화를 보여줍니다. 공격자는 더 이상 파괴적인 암호화를 최우선으로 하지 않습니다. 대신 장기적, 은밀한 접근을 목표로 하는 "디지털 기생충(Digital Parasite)" 모델이 떠오르고 있습니다. Picus Labs의 Red Report 2026이 밝혀낸 새로운 위협 환경을 분석합니다.
+## 서론: 침묵하는 위협
+
+지난 10년간 랜섬웨어가 사이버 위협의 대명사였지만, 2025년의 공격 데이터는 명백한 변화를 보여줍니다. 공격자는 더 이상 파괴적인 암호화를 최우선으로 하지 않습니다. 대신 장기적, 은밀한 접근을 목표로 하는 **"디지털 기생충(Digital Parasite)"** 모델이 떠오르고 있습니다.
+
+Picus Labs의 Red Report 2026이 밝혀낸 새로운 위협 환경을 분석합니다.
 
 ---
 
-## 1. 랜섬웨어 시그널의 약화
+## 랜섬웨어 시그널의 약화
 
 ### 38% 감소한 데이터 암호화 공격
 
@@ -12,8 +22,11 @@
 
 하지만 2025년의 데이터는 다른 이야기를 들려줍니다:
 
-- **Data Encrypted for Impact (T1486)**: 2024년 21.00%에서 2025년 12.94%로 **38% 감소**
-- 이 감소는 공격자 능력의 저하가 아닌 **전략적 전환의 결과**
+| 항목 | 2024년 | 2025년 | 변화 |
+|------|--------|--------|------|
+| Data Encrypted for Impact (T1486) | 21.00% | 12.94% | **-38%** |
+
+이 감소는 공격자 능력의 저하가 아닌 **전략적 전환의 결과**입니다.
 
 ### 왜 암호화를 포기했나?
 
@@ -30,7 +43,7 @@
 
 ---
 
-## 2. 자격증명 도굴이 새로운 제어 플레인이 되다
+## 자격증명 도굴이 새로운 제어 플레인이 되다
 
 ### 4건 중 1건의 공격이 자격증명 탈취
 
@@ -38,8 +51,11 @@
 
 Red Report 2026에 따르면:
 
-- **Credentials from Password Stores (T1555)**: 지난 1년간 관찰된 모든 공격의 **23.49%**에 등장
-- 4건 중 1건은 브라우저, 키체인, 비밀번호 관리자에서 저장된 자격증명을 직접 추출
+| 기술 | MITRE ID | 비중 |
+|------|----------|------|
+| Credentials from Password Stores | T1555 | **23.49%** |
+
+4건 중 1건은 브라우저, 키체인, 비밀번호 관리자에서 저장된 자격증명을 직접 추출합니다.
 
 ### 소음 없는 진입
 
@@ -57,15 +73,15 @@ Red Report 2026에 따르면:
 
 ---
 
-## 3. 최상위 ATT&CK 기술의 80%가 은폐에 집중
+## 최상위 ATT&CK 기술의 80%가 은폐에 집중
 
 ### 전례 없는 은폐 기술 집중도
 
 MITRE ATT&CK® 프레임워크의 폭넓은 기술에도 불구하고, 실제 멀웨어 활동은 은폐, 지속성, 은밀한 명령 제어를 우선하는 소수의 기술 집합에 계속 집중됩니다.
 
-Red Report 2026은 **Picus Labs가 기록한 역대 가장 높은 은폐 중심 전술 집중도**를 보여줍니다:
+Red Report 2026은 **Picus Labs가 기록한 역대 가장 높은 은폐 중심 전술 집중도**를 보여줍니다.
 
-**최상위 10개 MITRE ATT&CK 기술 중 8개가 은폐, 지속성, 정찰에 집중**
+최상위 10개 MITRE ATT&CK 기술 중 **8개가 은폐, 지속성, 정찰에 집중**합니다.
 
 | 기술 | MITRE ID | 목적 |
 |------|----------|------|
@@ -83,7 +99,7 @@ Red Report 2026은 **Picus Labs가 기록한 역대 가장 높은 은폐 중심 
 
 ---
 
-## 4. 자기 인식 멀웨어: 분석을 거부하다
+## 자기 인식 멀웨어: 분석을 거부하다
 
 ### 비활성조차 회피 기술
 
@@ -115,7 +131,7 @@ Red Report 2026은 이를 **Virtualization and Sandbox Evasion (T1497)**의 상�
 
 ---
 
-## 5. AI의 현실: 혁명이 아닌 진화
+## AI의 현실: 혁명이 아닌 진화
 
 ### AI 기대 vs 현실
 
@@ -154,7 +170,7 @@ Red Report 2026 데이터는 **신중한 답변**을 제안합니다:
 
 ---
 
-## 6. 기본으로 돌아가기: 다른 위협 모델을 위해
+## 기본으로 돌아가기: 다른 위협 모델을 위해
 
 ### 변화하는 목표, 변하지 않는 전술
 
@@ -183,7 +199,7 @@ Red Report 2026 데이터는 **신중한 답변**을 제안합니다:
 
 ---
 
-## 7. 결론: 디지털 기생충에 대비하세요
+## 결론: 디지털 기생충에 대비하세요
 
 ### 침묵하는 위협이 더 위험하다
 
@@ -201,13 +217,8 @@ Picus Security는 가장 시끄러운 것뿐만 아니라 **공격자가 지금 
 
 ---
 
-## 참고자료
+## 참고 자료
 
-- Picus Labs Red Report 2026
-- MITRE ATT&CK Framework
-- The Hacker News: "From Ransomware to Residency: Inside the Rise of the Digital Parasite"
-
----
-
-*작성일: 2026년 2월 11일*
-*출처: Picus Labs Red Report 2026, The Hacker News*
+- [Picus Labs Red Report 2026](https://www.picussecurity.com/red-report)
+- [MITRE ATT&CK Framework](https://attack.mitre.org/)
+- [The Hacker News: From Ransomware to Residency: Inside the Rise of the Digital Parasite](https://thehackernews.com/2025/12/from-ransomware-to-residency-inside-rise.html)
