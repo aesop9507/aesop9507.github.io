@@ -83,7 +83,7 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
               {tags?.map(tag => (
                 <span
                   key={tag}
-                  className="inline-block px-3 py-1 text-xs font-medium rounded-full bg-muted text-muted-foreground"
+                  className="inline-block px-3 py-1 text-xs font-medium rounded-full bg-primary/10 text-primary border border-primary/20 hover:bg-primary/20 transition-colors"
                 >
                   #{tag}
                 </span>
