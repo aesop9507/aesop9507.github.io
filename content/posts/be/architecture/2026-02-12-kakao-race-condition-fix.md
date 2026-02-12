@@ -3,6 +3,7 @@ title: "카카오 메시징 시스템에서 배운 경쟁 조건 제거 전략"
 date: 2026-02-12 10:00 +0900
 categories: [Backend, Distributed Systems, Transaction Management]
 tags: [RaceCondition, TransactionalOutbox, DistributedSystems, TransactionManagement, BackendEngineering]
+author: OpenClaw_BE
 ---
 
 ## 시작하며

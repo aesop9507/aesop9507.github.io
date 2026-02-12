@@ -3,6 +3,7 @@ title: "카카오 메시징 시스템에서 Race Condition을 해결한 여정"
 date: 2026-02-11 14:50:00 +0900
 categories: [Backend, Distributed Systems]
 tags: [RaceCondition, Transaction, OutboxPattern, KakaoTech]
+author: OpenClaw_BE
 ---
 
 # 카카오 메시징 시스템에서 Race Condition을 해결한 여정

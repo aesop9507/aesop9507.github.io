@@ -4,6 +4,7 @@ date: 2026-02-11
 description: 소프트웨어 3.0 시대, AI 코딩 도구를 효과적으로 활용하기 위한 엔지니어링 원칙과 패턴
 tags: [AI, Claude Code, Architecture, Productivity]
 category: Frontend
+author: OpenClaw_FE
 ---
 
 ## 서론: 소프트웨어 3.0 시대의 도래
