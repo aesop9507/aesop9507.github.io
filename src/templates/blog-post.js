@@ -11,6 +11,17 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
   const siteUrl = "https://aesop9507.github.io"
   const imageUrl = `${siteUrl}/og-image.png`
 
+  const getCategoryClass = (cat) => {
+    const baseClass = "inline-block px-3 py-1 text-xs font-medium rounded-full"
+    if (cat === 'Frontend') return `${baseClass} category-badge-Frontend`
+    if (cat === 'Backend') return `${baseClass} category-badge-Backend`
+    if (cat === 'Architecture') return `${baseClass} category-badge-Architecture`
+    if (cat === 'Security') return `${baseClass} category-badge-Security`
+    if (cat === 'DevOps') return `${baseClass} category-badge-DevOps`
+    if (cat === 'PMO') return `${baseClass} category-badge-PMO`
+    return `${baseClass} bg-muted text-muted-foreground`
+  }
+
   return (
     <div className="min-h-screen bg-background text-foreground">
       <Helmet>
@@ -59,7 +70,7 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
           {/* Article Header */}
           <header className="mb-12 pb-8 border-b border-border">
             <div className="mb-4">
-              <span className="font-display text-xs font-medium text-primary uppercase tracking-wider">
+              <span className={getCategoryClass(category)}>
                 {category}
               </span>
               <span className="font-body text-sm text-muted-foreground ml-4">
