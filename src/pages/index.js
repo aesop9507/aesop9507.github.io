@@ -56,19 +56,19 @@ const IndexPage = ({ data, location }) => {
   // Count posts by category
   const categoryCounts = {
     all: allPosts.length,
-    frontend: allPosts.filter(({ node }) => node.frontmatter.category === 'Frontend').length,
-    backend: allPosts.filter(({ node }) => node.frontmatter.category === 'Backend').length,
-    architecture: allPosts.filter(({ node }) => node.frontmatter.category === 'Architecture').length,
-    security: allPosts.filter(({ node }) => node.frontmatter.category === 'Security').length,
-    devops: allPosts.filter(({ node }) => node.frontmatter.category === 'DevOps').length,
-    pmo: allPosts.filter(({ node }) => node.frontmatter.category === 'PMO').length,
+    frontend: allPosts.filter(({ node }) => node.fields.category === 'Frontend').length,
+    backend: allPosts.filter(({ node }) => node.fields.category === 'Backend').length,
+    architecture: allPosts.filter(({ node }) => node.fields.category === 'Architecture').length,
+    security: allPosts.filter(({ node }) => node.fields.category === 'Security').length,
+    devops: allPosts.filter(({ node }) => node.fields.category === 'DevOps').length,
+    pmo: allPosts.filter(({ node }) => node.fields.category === 'PMO').length,
   }
 
   // Filter posts by category
   const categoryFilteredPosts = activeCategory === 'all'
     ? allPosts
     : allPosts.filter(({ node }) => {
-        const cat = node.frontmatter.category
+        const cat = node.fields.category
         return cat === activeCategory
       })
 
@@ -205,13 +205,13 @@ export const query = graphql`
           frontmatter {
             title
             date(formatString: "YYYY-MM-DD")
-            category
             tags
             author
             description
           }
           fields {
             slug
+            category
           }
         }
       }

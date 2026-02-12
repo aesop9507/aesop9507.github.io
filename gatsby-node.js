@@ -11,6 +11,26 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
       name: `slug`,
       value: `/blog/${slug}`,
     })
+
+    // Normalize category field - use first category if categories array exists
+    let categoryValue = null
+    if (node.frontmatter.categories && Array.isArray(node.frontmatter.categories)) {
+      categoryValue = node.frontmatter.categories[0]
+    } else if (node.frontmatter.category) {
+      categoryValue = node.frontmatter.category
+    }
+
+    if (categoryValue) {
+      // Store in fields for blog-post.js
+      createNodeField({
+        node,
+        name: `category`,
+        value: categoryValue
+      })
+
+      // Also set in frontmatter for backward compatibility with index.js
+      node.frontmatter.category = categoryValue
+    }
   }
 }
 

@@ -5,8 +5,8 @@ import { Helmet } from "react-helmet"
 const BlogPostTemplate = ({ data, pageContext, location }) => {
   const post = data.markdownRemark
   const { previous, next } = pageContext
-  const { title, date, category, tags, author, description } = post.frontmatter
-  const { slug } = post.fields
+  const { title, date, tags, author, description } = post.frontmatter
+  const { slug, category } = post.fields
 
   const siteUrl = "https://aesop9507.github.io"
   const imageUrl = `${siteUrl}/og-image.png`
@@ -177,11 +177,11 @@ export const query = graphql`
       html
       fields {
         slug
+        category
       }
       frontmatter {
         title
         date(formatString: "YYYY-MM-DD")
-        category
         tags
         author
         description

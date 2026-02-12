@@ -4,8 +4,8 @@ import { Link } from "gatsby"
 const FeaturedPost = ({ post, onPrev, onNext, hasPrev, hasNext }) => {
   if (!post) return null
 
-  const { title, date, category, tags, author, description } = post.frontmatter
-  const { slug } = post.fields
+  const { title, date, tags, author, description } = post.frontmatter
+  const { slug, category } = post.fields
 
   const getCategoryClass = (cat) => {
     const baseClass = "inline-block px-3 py-1 text-xs font-medium rounded-full"

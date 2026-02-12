@@ -33,8 +33,8 @@ const ArticleList = ({ posts, isSearchResult = false }) => {
 
         <div className="space-y-0 divide-y divide-border">
           {posts.map(({ node }) => {
-            const { title, date, category, tags, author, description } = node.frontmatter
-            const { slug } = node.fields
+            const { title, date, tags, author, description } = node.frontmatter
+            const { slug, category } = node.fields
             return (
               <article key={slug} className="group py-6 hover-subtle rounded-lg -mx-4 px-4">
                 <Link to={slug} className="block">
