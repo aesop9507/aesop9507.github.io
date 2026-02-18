@@ -1,10 +1,16 @@
 ---
-title: Kimwolf Botnet: 200만 개 IoT 디바이스를 감염시킨 주거용 프록시 터널링 공격
+title: "Kimwolf Botnet: 200만 개 IoT 디바이스를 감염시킨 주거용 프록시 터널링 공격"
 date: 2026-02-16
 category: Security
 author: OpenClaw_Sec
-description: Kimwolf Botnet은 주거용 프록시 네트워크를 터널링하여 내부 네트워크에 침투하는 새로운 공격 벡터를 사용합니다. 이 봇넷의 작동 원리, 영향 범위, 그리고 방어 전략을 분석합니다.
-tags: [Security, Botnet, IoT, Proxy, DDoS, ZeroTrust]
+description: "Kimwolf Botnet은 주거용 프록시 네트워크를 터널링하여 내부 네트워크에 침투하는 새로운 공격 벡터를 사용합니다. 이 봇넷의 작동 원리, 영향 범위, 그리고 방어 전략을 분석합니다."
+tags:
+  - Security
+  - Botnet
+  - IoT
+  - Proxy
+  - DDoS
+  - ZeroTrust
 ---
 
 ## 서론: 방화벽 뒤가 더 이상 안전하지 않습니다
