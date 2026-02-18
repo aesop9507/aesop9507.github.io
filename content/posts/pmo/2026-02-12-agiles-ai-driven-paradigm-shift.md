@@ -1,6 +1,7 @@
 ---
 title: Agile's AI-Driven Paradigm Shift
 date: 2026-02-12
+category: "PMO"
 tags:
   - Agile
   - AI

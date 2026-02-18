@@ -1,7 +1,7 @@
 ---
 title: "2026년 2월 Patch Tuesday: 실제 악용 중인 6개 제로데이와 AI 개발 환경의 새로운 보안 위협"
 date: 2026-02-12 10:00:00 +0900
-categories: security
+category: "Security"
 tags:
   - patch-tuesday
   - zero-day

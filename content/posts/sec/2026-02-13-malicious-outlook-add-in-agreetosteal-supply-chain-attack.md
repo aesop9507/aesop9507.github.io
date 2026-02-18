@@ -1,7 +1,7 @@
 ---
 title: "AgreeToSteal: Microsoft Outlook 애드인 공급망 공격과 4,000개 이상의 자격증명 탈취 사례"
 date: 2026-02-13 10:30:00 +0900
-categories: security
+category: "Security"
 tags:
   - supply-chain-attack
   - outlook-security
