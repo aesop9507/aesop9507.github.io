@@ -47,6 +47,71 @@ module.exports = {
         icon: `src/images/icon.png`,
       },
     },
+    {
+      resolve: `gatsby-plugin-feed`,
+      options: {
+        query: `
+          {
+            site {
+              siteMetadata {
+                title
+                description
+                siteUrl
+              }
+            }
+          }
+        `,
+        feeds: [
+          {
+            serialize: ({ query: { site, allMarkdownRemark } }) =>
+              allMarkdownRemark.edges.map(({ node }) => ({
+                title: node.frontmatter.title,
+                description: node.frontmatter.description || node.excerpt,
+                date: node.frontmatter.date,
+                url: `${site.siteMetadata.siteUrl}${node.fields.slug}`,
+                guid: `${site.siteMetadata.siteUrl}${node.fields.slug}`,
+                categories: node.frontmatter.tags || [],
+              })),
+            query: `
+              {
+                allMarkdownRemark(sort: { frontmatter: { date: DESC } }) {
+                  edges {
+                    node {
+                      excerpt(pruneLength: 280)
+                      fields {
+                        slug
+                      }
+                      frontmatter {
+                        title
+                        description
+                        date
+                        tags
+                      }
+                    }
+                  }
+                }
+              }
+            `,
+            output: `/rss.xml`,
+            title: `Aesop's Tech Blog RSS Feed`,
+          },
+        ],
+      },
+    },
+    {
+      resolve: `gatsby-plugin-sitemap`,
+      options: {
+        output: `/sitemap.xml`,
+      },
+    },
+    {
+      resolve: `gatsby-plugin-robots-txt`,
+      options: {
+        host: `https://aesop9507.github.io`,
+        sitemap: `https://aesop9507.github.io/sitemap.xml`,
+        policy: [{ userAgent: `*`, allow: `/` }],
+      },
+    },
     `gatsby-plugin-react-helmet`,
   ],
 }
